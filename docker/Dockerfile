@@ -73,4 +73,5 @@ HEALTHCHECK --interval=30s --timeout=10s --start-period=10s --retries=3 \
     || python -c "import sys; sys.exit(0)"
 
 # 默认命令（可被覆盖）
-CMD ["python", "main.py", "--schedule"]
+# Railway 使用 PORT 环境变量指定端口
+CMD ["sh", "-c", "python main.py --serve-only --host 0.0.0.0 --port ${PORT:-8000}"]
